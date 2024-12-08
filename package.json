@@ -16,7 +16,7 @@
     "start": "node dist/http/server.js",
     "prisma:migrate": "prisma migrate deploy",
     "prisma:generate": "prisma generate",
-    "deploy": "npm cli && npm run prisma:generate && npm run prisma:migrate && npm run build"
+    "deploy": "yarn && yarn prisma:generate && yarn prisma:migrate && yarn build"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
