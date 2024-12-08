@@ -4,13 +4,16 @@
   "main": "dist/server.js",
   "author": "erivaldocazinga22",
   "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
   },
   "scripts": {
     "start:dev": "tsx --watch --env-file .env src/http/server.ts",
     "build": "tsc",
-    "start": "node dist/server.js",
+    "start": "node dist/src/http/server.js",
     "prisma:migrate": "prisma migrate deploy",
     "prisma:generate": "prisma generate",
     "deploy": "npm run prisma:generate && npm run prisma:migrate && npm run build"
