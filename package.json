@@ -5,7 +5,7 @@
   "author": "erivaldocazinga22",
   "license": "MIT",
   "engines": {
-    "node": ">=20"
+    "node": ">=18"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
