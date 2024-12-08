@@ -1,4 +1,4 @@
-import { env } from "../src/config/env.config";
+import { env } from "./env.config";
 import { PrismaClient } from "@prisma/client";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";

@@ -1,7 +1,7 @@
 {
   "name": "billing-system-test-hosp",
   "version": "1.0.0",
-  "main": "dist/server.js",
+  "main": "dist/http/server.js",
   "author": "erivaldocazinga22",
   "license": "MIT",
   "engines": {
@@ -13,10 +13,10 @@
   "scripts": {
     "start:dev": "tsx --watch --env-file .env src/http/server.ts",
     "build": "tsc",
-    "start": "node dist/src/http/server.js",
+    "start": "node dist/http/server.js",
     "prisma:migrate": "prisma migrate deploy",
     "prisma:generate": "prisma generate",
-    "deploy": "npm run prisma:generate && npm run prisma:migrate && npm run build"
+    "deploy": "npm cli && npm run prisma:generate && npm run prisma:migrate && npm run build"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
