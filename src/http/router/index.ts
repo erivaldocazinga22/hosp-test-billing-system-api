@@ -1,31 +1,20 @@
 import { Router } from "express";
+import { loginController } from "../controllers/auth/login.controller";
+import { validateController } from "../controllers/auth/validate.controller";
+import * as usersController from "../controllers/users.controller";
+import { authenticatedTokenMiddleware as authenticatedToken } from "../middlewares/authenticatedToken";
 
 export const routers = Router();
 
 routers.get("/", (request, response) => {
-    response.send("<h1>Welcome in Billing Sistem API Test</h1>")
+    response.send("<h1>Welcome in Billing Sistem API Test</h1>");
 });
 
 
 // Authentications routers
-routers.post("/login", async (request, response) => {
-    response.json({
-        status: 200,
-        message: "Authentication successful",
-        data: {
-            token: "test-de-token"
-        }
-    });
-})
+routers.post("/login", loginController);
+routers.post("/validate", authenticatedToken, validateController);
 
-routers.post("/validate", async (request, response) => {
-    response.json({
-        status: 200,
-        message: "Token is valid",
-        data: {
-            name: "faker user",
-            email: "faker@example.com"
-        }
-    })
-})
+// Users routers
+routers.get("/users", usersController.findAll)
 
