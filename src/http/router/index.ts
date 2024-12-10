@@ -18,7 +18,7 @@ routers.post("/validate", authenticatedToken, validateController);
 // Users routers
 routers.get("/users", usersController.findAll);
 routers.get("/users/:id", usersController.findOne);
-routers.post("/users", usersController.create);
-routers.patch("/users/:id", usersController.update);
-routers.delete("/users/:id", usersController.delete);
+routers.post("/users", authenticatedToken, usersController.create);
+routers.patch("/users/:id", authenticatedToken, usersController.update);
+routers.delete("/users/:id", authenticatedToken, usersController.delete);
 
