@@ -8,14 +8,15 @@ const prisma = new PrismaClient();
 const run = async () => {
     console.log("Seed function Running...");
     
-    await prisma.user.deleteMany();
     await prisma.authentication.deleteMany();
+    await prisma.user.deleteMany();
 
     const passwordHash = bcrypt.hashSync("password", 10);
     const user = await prisma.user.create({
         data: {
             name: "João Sacala",
             email: "joaosacala@example.com",
+            role: "ADMIN",
             password: passwordHash
         }
     });

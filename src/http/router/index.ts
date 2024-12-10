@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { loginController } from "../controllers/auth/login.controller";
 import { validateController } from "../controllers/auth/validate.controller";
-import * as usersController from "../controllers/users.controller";
+import * as usersController from "../controllers/users";
 import { authenticatedTokenMiddleware as authenticatedToken } from "../middlewares/authenticatedToken";
 
 export const routers = Router();
@@ -16,5 +16,9 @@ routers.post("/login", loginController);
 routers.post("/validate", authenticatedToken, validateController);
 
 // Users routers
-routers.get("/users", usersController.findAll)
+routers.get("/users", usersController.findAll);
+routers.get("/users/:id", usersController.findOne);
+routers.post("/users", usersController.create);
+routers.patch("/users/:id", usersController.update);
+routers.delete("/users/:id", usersController.delete);
 
