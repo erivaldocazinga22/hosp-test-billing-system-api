@@ -4,6 +4,7 @@ import { validateController } from "../controllers/auth/validate.controller";
 import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
 import * as usersController from "../controllers/user";
 import * as rolesController from "../controllers/role";
+import { avatarUploadMiddleware } from "../middlewares/avatar-upload.middleware";
 
 export const routers = Router();
 
@@ -17,6 +18,7 @@ routers.post("/login", authenticationController);
 routers.post("/validate", ensureAuthenticated, validateController);
 
 // Users routers
+routers.put("/users/avatar", avatarUploadMiddleware.single("avatar"), ensureAuthenticated, usersController.avatarUpload);
 routers.get("/users", usersController.findAll);
 routers.get("/users/:id", usersController.findOne);
 routers.post("/users", ensureAuthenticated, usersController.create);

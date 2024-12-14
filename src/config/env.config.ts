@@ -8,6 +8,9 @@ const envSchema = z.object({
     CORS_ORIGIN: z.string(),
     JWT_SECRET_ACCESS: z.string().min(16, { message: "JWT_SECRET_ACCESS deve ter pelo menos 16 caracteres." }),
     JWT_SECRET_REFRESH: z.string().min(16, { message: "JWT_SECRET_REFRESH deve ter pelo menos 16 caracteres." }),
+    CLOUDINARY_CLOUD_NAME: z.string().regex(/^(?=.*[a-zA-Z])(?=.*\d).+$/, "A string deve conter letras e números"),
+    CLOUDINARY_API_KEY: z.string().regex(/^[0-9]+$/, "A string deve conter apenas números"),
+    CLOUDINARY_API_SECRET: z.string().regex(/^(?=.*[a-zA-Z])(?=.*\d).+$/, "A string deve conter letras e números")
 });
 
 export const env = envSchema.parse(process.env);
