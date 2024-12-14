@@ -16,7 +16,8 @@
     "start": "node dist/http/server.js",
     "prisma:migrate": "prisma migrate deploy",
     "prisma:generate": "prisma generate",
-    "deploy": "yarn --frozen-lockfile install && yarn prisma:generate && yarn prisma:migrate && yarn prisma db seed && yarn build"
+    "prisma:reset": "prisma migrate reset",
+    "deploy": "yarn --frozen-lockfile install && yarn prisma:reset && yarn prisma:generate && yarn prisma:migrate && yarn prisma db seed && yarn build"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
