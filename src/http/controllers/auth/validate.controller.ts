@@ -5,7 +5,7 @@ export const validateController: RequestHandler = async (request, response) => {
     try {
         const user = await prisma.user.findFirst({
             where: {
-                id: parseInt(request.body.user.userId)
+                id: parseInt(request.body.user.sub)
             },
             select: {
                 id: true,

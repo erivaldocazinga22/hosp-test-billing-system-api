@@ -1,8 +1,9 @@
 import { Router } from "express";
-import { loginController } from "../controllers/auth/login.controller";
+import { authenticationController } from "../controllers/auth/authentication.controller";
 import { validateController } from "../controllers/auth/validate.controller";
-import * as usersController from "../controllers/users";
-import { authenticatedTokenMiddleware as authenticatedToken } from "../middlewares/authenticatedToken";
+import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
+import * as usersController from "../controllers/user";
+import * as rolesController from "../controllers/role";
 
 export const routers = Router();
 
@@ -12,13 +13,19 @@ routers.get("/", (request, response) => {
 
 
 // Authentications routers
-routers.post("/login", loginController);
-routers.post("/validate", authenticatedToken, validateController);
+routers.post("/login", authenticationController);
+routers.post("/validate", ensureAuthenticated, validateController);
 
 // Users routers
 routers.get("/users", usersController.findAll);
 routers.get("/users/:id", usersController.findOne);
-routers.post("/users", authenticatedToken, usersController.create);
-routers.patch("/users/:id", authenticatedToken, usersController.update);
-routers.delete("/users/:id", authenticatedToken, usersController.delete);
+routers.post("/users", ensureAuthenticated, usersController.create);
+routers.patch("/users/:id", ensureAuthenticated, usersController.update);
+routers.delete("/users/:id", ensureAuthenticated, usersController.delete);
 
+// roles routers
+routers.get("/roles", rolesController.findAll);
+routers.get("/roles/:id", rolesController.findOne);
+routers.post("/roles", ensureAuthenticated, rolesController.create);
+routers.patch("/roles/:id", ensureAuthenticated, rolesController.update);
+routers.delete("/roles/:id", ensureAuthenticated, rolesController.delete);

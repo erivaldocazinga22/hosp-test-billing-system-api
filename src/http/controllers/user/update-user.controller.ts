@@ -31,7 +31,7 @@ export const updateUserController: RequestHandler = async (request, response) =>
                 data: error.errors
             });
         } else {
-            console.log(error);
+            console.log("Error", error);
             response.status(500).json({
                 status: 500,
                 message: "Internal server error"

@@ -8,6 +8,8 @@ export const readUserController: RequestHandler = async (request, response) => {
                 id: true,
                 name: true,
                 email: true,
+                avatarUrl: true,
+                roles: true,
                 password: false,
                 createdAt: true,
                 updatedAt: true

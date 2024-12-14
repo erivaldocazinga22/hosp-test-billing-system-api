@@ -1,0 +1,30 @@
+POST http://localhost:5500/api/roles HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzQxNjg4ODEsImV4cCI6MTczNDE2OTc4MSwic3ViIjoiOSJ9.i-Y__X5H2SeAg-UKHRcWE9kztb33wenpoPEwISzXqAbqZO_wwouRoXCq5EXMRmqqkcPFKk0fT7DDyfSjDb5N8A
+content-type: application/json
+
+{
+    "name": "ADMIN TESt"
+}
+
+### 
+GET http://localhost:5500/api/roles HTTP/1.1
+
+### 
+GET http://localhost:5500/api/roles/d0107656-4213-443c-b552-10e483e538eb HTTP/1.1
+
+### 
+DELETE http://localhost:5500/api/roles/d0107656-4213-443c-b552-10e483e538eb HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzQxODMwNjUsImV4cCI6MTczNDE4Mzk2NSwic3ViIjoiOSJ9.O-4SossvLaTk-4UuRgxzx29Avmk_5DQ6GPtnocHLzheP3B7hYbK5O4_yfLIo-OGL8LYxfDjwdknuVYd0spX2CA
+
+### 
+PATCH http://localhost:5500/api/roles/7e2daaef-3db8-4bb5-be98-ef4da8294455 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MzQxODMwNjUsImV4cCI6MTczNDE4Mzk2NSwic3ViIjoiOSJ9.O-4SossvLaTk-4UuRgxzx29Avmk_5DQ6GPtnocHLzheP3B7hYbK5O4_yfLIo-OGL8LYxfDjwdknuVYd0spX2CA
+content-type: application/json
+
+{
+    "name": "SUPER_ADMIN",
+    "permissions": [
+        "UPDATE_ORDERS",
+        "DELETE_ORDERS"
+    ]
+}

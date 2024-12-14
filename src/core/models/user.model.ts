@@ -4,7 +4,10 @@ export const createUserSchema = z.object({
     name: z.string(),
     email: z.string().email(),
     password: z.string(),
-    role: z.enum(["SUPER_ADMIN", "ADMIN", "EMPLOYEE"]),
+    role: z.string().refine((body) => {
+        const roles = body.split(" ").map((role) => role.toUpperCase());
+        return roles.join("_");
+    })
 });
 
 export const updateUserSchema = z.object({

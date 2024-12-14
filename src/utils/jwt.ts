@@ -1,14 +1,27 @@
-import * as jwt from "jsonwebtoken";
-import { env } from "../config/env.config";
+import { sign, SignOptions, verify } from "jsonwebtoken"
+import { env } from "../config/env.config"
 
-const { JWT_SECRET } = env;
 
-export const createToken = async (payload: object) => {
-    return jwt.sign(payload, JWT_SECRET, {
-        algorithm: "HS512",
-        expiresIn: 1 * 24 * 60 * 60 * 1000 // ou '1d' que equivale a 1 days
-    });
-}
-export const verifyToken = async (token: string) => {
-    return jwt.verify(token, JWT_SECRET);
+export class JWTEncryptions {
+    private static secretKey: string = env.JWT_SECRET_ACCESS;
+    private static expiresIn: number = 15 * 60 * 1000; // 15 minutos em milissegundos
+    
+    public static generateToken(payload: object, options?: SignOptions) {
+        return sign(payload, this.secretKey, {
+            expiresIn: options?.expiresIn || this.expiresIn,
+            algorithm: options?.algorithm || "HS512",
+            ...options
+        });
+    }
+    public static verifyToken(token: string) {
+        try {
+            return verify(token, this.secretKey, {
+                algorithms: ["HS512"],
+                maxAge: this.expiresIn,
+                ignoreExpiration: false
+            });
+        } catch (error) {
+            throw new Error("Token inválido!");
+        }
+    }
 }
