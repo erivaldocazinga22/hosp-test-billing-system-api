@@ -1,4 +1,6 @@
-import"express-async-errors";
+import "express-async-errors";
+import "module-alias/register";
+import "tsconfig-paths/register";
 import cors from "cors";
 import helmet from "helmet";
 import express from "express";
