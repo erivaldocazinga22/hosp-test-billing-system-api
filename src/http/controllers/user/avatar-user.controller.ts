@@ -1,7 +1,7 @@
-import { RequestHandler } from "express";
 import path from "node:path";
+import { RequestHandler } from "express";
 import { v2 as cloudinary } from "cloudinary";
-import { prisma } from "../../../config/prisma.config";
+import { prisma } from "@/core/config/prisma.config";
 
 export const avatarUserController: RequestHandler = async (request, response) => {
     try {

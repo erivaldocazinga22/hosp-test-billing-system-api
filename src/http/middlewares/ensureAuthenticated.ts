@@ -1,5 +1,5 @@
 import { RequestHandler } from "express";
-import { JWTEncryptions } from "../../utils/jwt";
+import { JWTEncryptions } from "@/core/utils/jwt";
 
 export const ensureAuthenticated: RequestHandler = async (request, response, next) => {
     const authHeader = request.headers.authorization;

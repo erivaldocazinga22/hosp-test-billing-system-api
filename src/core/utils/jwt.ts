@@ -1,5 +1,5 @@
-import { sign, SignOptions, verify } from "jsonwebtoken"
-import { env } from "../config/env.config"
+import { sign, SignOptions, verify } from "jsonwebtoken";
+import { env } from "@/core/config/env.config";
 
 
 export class JWTEncryptions {

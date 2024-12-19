@@ -1,19 +1,19 @@
-import "express-async-errors";
-import express from "express";
-import cors from "cors";
-import { corsConfig } from "../config/cors.config";
-import { env } from "../config/env.config";
-import { routers } from "./router";
-import { errorMiddleware } from "./middlewares/error.middleware";
+import { app as server } from "./app";
+import { env } from "@/core/config/env.config";
+import { runningController } from "@/core/hooks/running-controller";
+import { Chalk } from "@/core/config/chalk.config";
 
-const PORT = parseInt(env.PORT);
+const { PORT } = env;
 
-export const app = express()
-    .use(cors(corsConfig))
-    .use(express.json())
-    .use(express.urlencoded({ extended: true }))
-    .use("/api", routers)
-    .use(errorMiddleware)
-    .listen(PORT, () => {
-        console.log(`Server running...`);
+server.listen(parseInt(PORT), () => {
+	runningController().then(async isCanRunning => {
+        const chalk = await Chalk();
+        console.log(" ");
+        if (!isCanRunning) {
+            console.log(chalk.bold.redBright("❌ Server cannot start, shutting down."));
+            return process.exit(1); 
+        }
+        console.log(chalk.bold.greenBright(`💥 Server running at ${chalk.underline(`http//127.0.0.1:${PORT}/`)}`));
+        console.log(" ");
     });
+});

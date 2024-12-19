@@ -1,5 +1,5 @@
 import { RequestHandler } from "express";
-import { prisma } from "../../../config/prisma.config";
+import { prisma } from "@/core/config/prisma.config";
 
 export const deleteUserController: RequestHandler = async (request, response) => {
     await prisma.user.delete({

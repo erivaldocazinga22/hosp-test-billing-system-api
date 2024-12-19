@@ -1,12 +1,10 @@
 import { RequestHandler } from "express";
-import { prisma } from "../../../config/prisma.config";
+import { prisma } from "@/core/config/prisma.config";
 
 export const validateController: RequestHandler = async (request, response) => {
     try {
         const user = await prisma.user.findFirst({
-            where: {
-                id: parseInt(request.body.user.sub)
-            },
+            where: { id: parseInt(request.body.user.sub)},
             select: {
                 id: true,
                 name: true,

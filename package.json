@@ -1,50 +1,52 @@
 {
-  "name": "billing-system-test-hosp",
+  "name": "@billing-system/api",
   "version": "1.0.0",
-  "main": "dist/http/server.js",
+  "description": "API para o sistema de faturamento",
+  "main": "dist/http/server.ts",
   "author": "erivaldocazinga22",
   "license": "MIT",
-  "engines": {
-    "node": ">=18"
-  },
   "prisma": {
-    "seed": "tsx src/config/seed.ts"
+    "seed": "tsx src/core/seeders/index.ts"
   },
   "scripts": {
     "start:dev": "tsx --watch --env-file .env src/http/server.ts",
-    "build": "tsc",
-    "start": "node dist/http/server.js",
+    "build": "tsc -p tsconfig.json",
+    "start": "node --env-file .env dist/http/server.js",
     "prisma:migrate": "prisma migrate deploy",
     "prisma:generate": "prisma generate",
-    "deploy": "yarn --frozen-lockfile install && yarn prisma:generate && yarn prisma:migrate && yarn prisma db seed && yarn build"
+    "deploy": "yarn --frozen-lockfile install && yarn prisma:generate && yarn prisma:migrate && yarn prisma db seed && yarn build",
+    "lint": "eslint src/**/*.ts",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.21.1",
+    "bcrypt": "^5.1.1",
+    "chalk": "^5.3.0",
+    "cloudinary": "^2.5.1",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "dayjs": "^1.11.13",
+    "express": "^4.21.1",
+    "express-async-errors": "^3.1.1",
+    "helmet": "^8.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@eslint/js": "^9.13.0",
     "@types/bcrypt": "^5.0.2",
+    "@types/compression": "^1.7.5",
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/jsonwebtoken": "^9.0.7",
     "@types/multer": "^1.4.12",
-    "@types/node": "^22.10.1",
-    "eslint": "^8.0.1",
-    "eslint-config-standard": "^17.1.0",
-    "eslint-plugin-import": "^2.25.2",
-    "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
-    "eslint-plugin-promise": "^6.0.0",
-    "prisma": "^6.0.1",
-    "tsx": "^4.19.2",
-    "typescript": "^5.7.2"
-  },
-  "dependencies": {
-    "@prisma/client": "^6.0.1",
-    "bcrypt": "^5.1.1",
-    "cloudinary": "^2.5.1",
-    "cors": "^2.8.5",
-    "dayjs": "^1.11.13",
-    "express": "^4.21.2",
-    "express-async-errors": "^3.1.1",
-    "jsonwebtoken": "^9.0.2",
-    "multer": "^1.4.5-lts.1",
-    "multer-storage-cloudinary": "^4.0.0",
-    "zod": "^3.23.8"
+    "@types/node": "^22.7.6",
+    "eslint": "^9.13.0",
+    "prisma": "^5.21.1",
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.10.0",
+    "vitest": "^2.1.3"
   }
 }

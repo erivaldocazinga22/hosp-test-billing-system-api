@@ -1,3 +1,6 @@
+-- CreateEnum
+CREATE TYPE "Roles" AS ENUM ('SUPER_ADMIN', 'ADMIN', 'EMPLOYEE');
+
 -- CreateTable
 CREATE TABLE "refresh_token" (
     "id" TEXT NOT NULL,

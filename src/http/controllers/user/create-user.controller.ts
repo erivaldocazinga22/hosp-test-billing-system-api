@@ -1,8 +1,8 @@
 import bcrypt from "bcrypt";
-import { RequestHandler } from "express";
-import { prisma } from "../../../config/prisma.config";
-import { createUserSchema } from "../../../core/models/user.model";
 import { ZodError } from "zod";
+import { RequestHandler } from "express";
+import { prisma } from "@/core/config/prisma.config";
+import { createUserSchema } from "@/core/models/user.model";
 
 export const createUserController: RequestHandler = async (request, response) => {
     try {
@@ -21,38 +21,16 @@ export const createUserController: RequestHandler = async (request, response) =>
             return;
         }
         
-        const roleAlreadyExists = await prisma.role.findFirst({
-            where: { name: requestBody.role }
-        });
-
-        if (!roleAlreadyExists) {
-            response.status(404).json({
-                status: 404,
-                message: "Role não encontradada"
-            });
-            return;
-        }
-
         const hashedPassword = await bcrypt.hash(requestBody.password, 10);
 
-        const user = await prisma.user.create({
+        await prisma.user.create({
             data: {
                 name: requestBody.name,
                 email: requestBody.email,
-                password: hashedPassword
+                password: hashedPassword,
+                roles: requestBody.role
             }
         });
-
-        await prisma.role.update({
-            where: { name: roleAlreadyExists.name },
-            data: {
-                users: {
-                    connect: {
-                        id: user.id
-                    }
-                }
-            }
-        })
 
         response.status(201).json({
             status: 201,

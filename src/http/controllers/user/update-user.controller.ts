@@ -1,7 +1,7 @@
-import { RequestHandler } from "express";
-import { updateUserSchema } from "../../../core/models/user.model";
 import { ZodError } from "zod";
-import { prisma } from "../../../config/prisma.config";
+import { RequestHandler } from "express";
+import { prisma } from "@/core/config/prisma.config";
+import { updateUserSchema } from "@/core/models/user.model";
 
 export const updateUserController: RequestHandler = async (request, response) => {
     try {

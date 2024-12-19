@@ -1,5 +1,5 @@
 import { RequestHandler } from "express";
-import { prisma } from "../../../config/prisma.config";
+import { prisma } from "@/core/config/prisma.config";
 
 export const readUserController: RequestHandler = async (request, response) => {
     try {

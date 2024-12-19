@@ -19,13 +19,19 @@ model User {
   avatarUrl String? @map("avatar_url")
   email     String  @unique
   password  String
+  roles     String
 
   RefreshToken RefreshToken?
-  roles        Role[]        @relation("UserRoles")
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @updatedAt()
 
   @@map("users")
+}
+
+enum Roles {
+  SUPER_ADMIN
+  ADMIN
+  EMPLOYEE
 }
 
 model RefreshToken {
@@ -39,23 +45,4 @@ model RefreshToken {
   User User @relation(fields: [userId], references: [id])
 
   @@map("refresh_token")
-}
-
-model Role {
-  id   String @id @default(uuid())
-  name String @unique
-
-  permissions Permission[] @relation("RolePermissions")
-  users       User[]       @relation("UserRoles")
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt()
-}
-
-model Permission {
-  id   String @id @default(uuid())
-  name String @unique
-
-  roles     Role[]   @relation("RolePermissions")
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt()
 }

@@ -1,19 +1,17 @@
+import dayjs from "dayjs";
 import bcrypt from "bcrypt";
 import { ZodError } from "zod";
 import { RequestHandler } from "express";
-import { prisma } from "../../../config/prisma.config";
-import { JWTEncryptions } from "../../../utils/jwt";
-import { generateLoginSchema } from "../../../core/models/auth.model";
-import dayjs from "dayjs";
+import { JWTEncryptions } from "@/core/utils/jwt";
+import { prisma } from "@/core/config/prisma.config";
+import { generateLoginSchema } from "@/core/models/auth.model";
 
 export const authenticationController: RequestHandler = async (request, response) => {
-    
     try {
         const { success, error, data: requestBody } = generateLoginSchema.safeParse(request.body);
 
         if (!success) throw new ZodError(error.issues);
     
-        
         const userAlreadyExists = await prisma.user.findFirst({
              where: { email: requestBody.email },
         });

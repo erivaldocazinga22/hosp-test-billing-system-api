@@ -5,6 +5,7 @@ CREATE TABLE "users" (
     "avatar_url" TEXT,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
+    "roles" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
