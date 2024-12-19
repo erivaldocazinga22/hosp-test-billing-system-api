@@ -51,4 +51,4 @@ export const createUserController: RequestHandler = async (request, response) =>
             });
         }
     }
-}
+};

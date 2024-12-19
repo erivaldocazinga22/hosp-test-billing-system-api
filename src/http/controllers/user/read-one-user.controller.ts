@@ -30,4 +30,4 @@ export const readOneUserController: RequestHandler = async (request, response) =
             message: "Internal server error"
         });
     }
-}
+};

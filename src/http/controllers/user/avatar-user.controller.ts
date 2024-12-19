@@ -38,7 +38,7 @@ export const avatarUserController: RequestHandler = async (request, response) =>
                 message: "Upload successful",
                 url: result?.secure_url,
             });
-        })
+        });
 
         const stream = fileUpload;
         stream.end(request.file.buffer);
@@ -47,12 +47,12 @@ export const avatarUserController: RequestHandler = async (request, response) =>
             response.json({
                 message: "Falha ao alterar o avatar!",
                 error: error.message,
-            })
+            });
         } else {
             response.json({
                 message: "Falha ao alterar o avatar!",
                 error: error,
-            })
+            });
         }
     }
-}
+};

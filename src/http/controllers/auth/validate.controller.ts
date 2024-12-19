@@ -25,4 +25,4 @@ export const validateController: RequestHandler = async (request, response) => {
             data: request.body
         });
     }
-}
+};

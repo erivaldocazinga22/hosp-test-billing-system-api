@@ -68,4 +68,4 @@ export const authenticationController: RequestHandler = async (request, response
             });
         }
     }
-}
+};

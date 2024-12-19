@@ -17,7 +17,7 @@ export const updateUserController: RequestHandler = async (request, response) =>
                 name: requestBody.name,
                 email: requestBody.email,
             }
-        })
+        });
         
         response.json({
             status: 200,
@@ -38,4 +38,4 @@ export const updateUserController: RequestHandler = async (request, response) =>
             });
         }
     }
-}
+};

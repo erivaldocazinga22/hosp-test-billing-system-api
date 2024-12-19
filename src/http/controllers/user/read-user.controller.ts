@@ -27,4 +27,4 @@ export const readUserController: RequestHandler = async (request, response) => {
             message: "Internal server error"
         });
     }
-}
+};

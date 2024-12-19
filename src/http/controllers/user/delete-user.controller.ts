@@ -11,4 +11,4 @@ export const deleteUserController: RequestHandler = async (request, response) =>
         status: 200,
         message: "Usuário deletado com sucesso!"
     });
-}
+};
