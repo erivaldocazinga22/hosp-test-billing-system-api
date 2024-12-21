@@ -6,7 +6,7 @@ import helmet from "helmet";
 import express from "express";
 import { router } from "./routers";
 import compression from "compression";
-import { corsOptions } from "@/core/config/cors.config";
+import { corsOptions } from "@/config/cors.config";
 import { errorMiddleware } from "./middlewares/error.middleware";
 
 export const app = express()

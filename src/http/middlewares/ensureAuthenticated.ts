@@ -1,5 +1,6 @@
 import { RequestHandler } from "express";
-import { JWTEncryptions } from "@/core/utils/jwt";
+import { JWTEncryptions } from "@/infrastructure/utils/jwt";
+import { JwtPayload } from "jsonwebtoken";
 
 export const ensureAuthenticated: RequestHandler = async (request, response, next) => {
     const authHeader = request.headers.authorization;
@@ -16,7 +17,17 @@ export const ensureAuthenticated: RequestHandler = async (request, response, nex
     const [, token] = authHeader.split(" ");
 
     try {
-        const decoded = JWTEncryptions.verifyToken(token);
+        const decoded: JwtPayload | string = JWTEncryptions.verifyToken(token);
+
+        if (!decoded) {
+            response.status(401).json({
+                status: 401,
+                error: "Unauthorized",
+                message: "Sessão expirada ou inválida. Por favor, faça login novamente."
+            });
+            return;
+        }
+
         request.body = {
             ...request.body,
             user: decoded

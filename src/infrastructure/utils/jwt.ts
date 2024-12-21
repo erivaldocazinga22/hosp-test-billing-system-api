@@ -1,5 +1,5 @@
 import { sign, SignOptions, verify } from "jsonwebtoken";
-import { env } from "@/core/config/env.config";
+import { env } from "@/config/env.config";
 
 
 export class JWTEncryptions {
@@ -21,6 +21,7 @@ export class JWTEncryptions {
                 ignoreExpiration: false
             });
         } catch (error) {
+            console.error("Error: ", error);
             throw new Error("Token inválido!");
         }
     }

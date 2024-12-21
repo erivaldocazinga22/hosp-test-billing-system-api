@@ -1,4 +1,4 @@
-GET http://localhost:5500/api/users HTTP/1.1
+GET http://localhost:5500/api/users?page=2 HTTP/1.1
 ### 
 GET http://localhost:5500/api/users/4 HTTP/1.1
 

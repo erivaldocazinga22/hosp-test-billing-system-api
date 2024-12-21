@@ -6,7 +6,7 @@
   "author": "erivaldocazinga22",
   "license": "MIT",
   "prisma": {
-    "seed": "tsx src/core/seeders/index.ts"
+    "seed": "tsx src/infrastructure/db/seeders/index.ts"
   },
   "scripts": {
     "start:dev": "tsx --watch --env-file .env src/http/server.ts",

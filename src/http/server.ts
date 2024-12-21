@@ -1,6 +1,6 @@
 import { app as server } from "./app";
-import { env } from "@/core/config/env.config";
-import { Chalk } from "@/core/config/chalk.config";
+import { env } from "@/config/env.config";
+import { Chalk } from "@/config/chalk.config";
 
 const { PORT } = env;
 
