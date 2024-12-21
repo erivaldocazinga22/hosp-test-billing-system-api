@@ -1,4 +1,4 @@
-import { ICreateUser } from "@/core/models/user.model";
+import { ICreateUser } from "@/core/entities/userEntity";
 import { CreateUserRepository } from "@/core/repositories/users/createUserRepository";
 import { UserAlreadyExistsRepository } from "@/core/repositories/users/userAlreadyExistsRepository";
 import { NewPassword } from "@/infrastructure/utils/newPassword";
